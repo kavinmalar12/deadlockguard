@@ -1,0 +1,6 @@
+# Distributed Transaction Coordinator Deadlock Report
+# System timestamp: 2026-10-24 10:40:00 UTC
+Process P101 (BillingService) waits for Resource Lock_Ledger_A; held by Process P102 (PaymentGateway)
+Process P102 (PaymentGateway) waits for Resource Lock_Inventory_B; held by Process P103 (ShippingService)
+Process P103 (ShippingService) waits for Resource Lock_Customer_C; held by Process P101 (BillingService)
+# Deadlock detected across 3 distributed microservices
