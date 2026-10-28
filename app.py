@@ -803,8 +803,33 @@ elif module == "🚀 7. Publish & Deploy":
     c_dl, c_info = st.columns([1.2, 1])
 
     with c_dl:
-        st.subheader("1. Download Production Deployment Bundle")
-        st.write("Generate a clean `.zip` archive containing all code, configuration files, model binaries, Dockerfile, and CI workflows.")
+        st.subheader("1. Project Downloads & Submission Artifacts")
+        st.write("Download the complete 10-page formal PDF project report, PowerPoint presentation slide deck, and full source code bundle.")
+
+        pdf_path = os.path.join(os.path.dirname(__file__), "DeadlockGuard_Complete_Project_Report.pdf")
+        if os.path.exists(pdf_path):
+            with open(pdf_path, "rb") as fp_pdf:
+                pdf_bytes = fp_pdf.read()
+            st.download_button(
+                label="📄 Download Official Project Report (PDF - 10 Pages)",
+                data=pdf_bytes,
+                file_name="DeadlockGuard_Complete_Project_Report.pdf",
+                mime="application/pdf",
+                type="primary",
+                use_container_width=True,
+            )
+
+        pptx_path = os.path.join(os.path.dirname(__file__), "DeadlockGuard_Presentation.pptx")
+        if os.path.exists(pptx_path):
+            with open(pptx_path, "rb") as fp_pptx:
+                pptx_bytes = fp_pptx.read()
+            st.download_button(
+                label="📊 Download Presentation Slides (PowerPoint - .pptx)",
+                data=pptx_bytes,
+                file_name="DeadlockGuard_Presentation.pptx",
+                mime="application/vnd.openxmlformats-officedocument.presentationml.presentation",
+                use_container_width=True,
+            )
 
         zip_path = os.path.join(os.path.dirname(__file__), "deadlockguard_deployable.zip")
         if not os.path.exists(zip_path):
@@ -814,14 +839,13 @@ elif module == "🚀 7. Publish & Deploy":
             zip_bytes = fp.read()
 
         st.download_button(
-            label="📦 Download Complete Deployment Bundle (ZIP)",
+            label="📦 Download Complete Source Code Bundle (ZIP)",
             data=zip_bytes,
             file_name="deadlockguard_deployable.zip",
             mime="application/zip",
-            type="primary",
             use_container_width=True,
         )
-        st.caption(f"Archive size: {len(zip_bytes) / 1024:.1f} KB • Includes `app.py`, `Dockerfile`, `render.yaml`, `Procfile`, CI workflows, tests.")
+        st.caption("Includes full documentation, datasets, trained ML models, Dockerfiles, and test suites.")
 
     with c_info:
         st.subheader("System Health & Runtime Diagnostics")
