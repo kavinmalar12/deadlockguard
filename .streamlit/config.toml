@@ -1,9 +1,10 @@
 [server]
-headless = false
+headless = true
 port = 8501
 enableCORS = true
 enableXsrfProtection = true
 maxUploadSize = 15
+showEmailPrompt = false
 
 [theme]
 base = "dark"
